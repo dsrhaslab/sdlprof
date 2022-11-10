@@ -1,10 +1,6 @@
 #include <stdarg.h>
 #include "profiler.cpp"
 
-bool dlopen_library_handle (){    
-    return profiler_dlopen_library_handle();
-}
-
 extern "C" ssize_t read (int fd, void* buf, size_t size) {
     printf("entrou");
     return profiler_read(fd, buf, size);
