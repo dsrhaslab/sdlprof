@@ -14,6 +14,8 @@
 #include <sys/time.h>
 #include <sstream>
 
+#include <algorithm>
+#include <chrono>
 #include <sys/vfs.h> 
 //#include  <sys/statfs.h>
 

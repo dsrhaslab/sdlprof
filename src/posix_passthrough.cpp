@@ -3,9 +3,20 @@
 
 namespace profiler {
 
+std::string log_name = "";
+
 void PosixPassthrough::logger(std::string str, std::string type){
-    printf("%s\n",type.c_str());
-    int fd_for_write = ((libc_open_variadic_t)dlsym (RTLD_NEXT, "open")) ("/home/gsd/log2.txt", O_CREAT | O_RDWR | O_APPEND, S_IRWXU);
+    //printf("%s\n",type.c_str());
+    if(profiler::log_name.empty()){
+        auto time = std::chrono::system_clock::now();
+        std::time_t end_time = std::chrono::system_clock::to_time_t(time);
+        log_name = "/home/gsd/logs/log_" + std::string(std::ctime(&end_time)) + ".txt";
+        std::replace( log_name.begin(), log_name.end(), ' ', '_');
+        log_name.erase(std::remove(log_name.begin(), log_name.end(), '\n'), log_name.cend());
+        //printf("-------------------%s\n", log_name.c_str());
+        
+    }
+    int fd_for_write = ((libc_open_variadic_t)dlsym (RTLD_NEXT, "open")) (log_name.c_str(), O_CREAT | O_RDWR | O_APPEND, S_IRWXU);
 
     if(fd_for_write > 0){
         int written = ((libc_write_t)dlsym(RTLD_NEXT, "write"))(fd_for_write, str.c_str (), str.size ());
