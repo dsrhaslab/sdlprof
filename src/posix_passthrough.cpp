@@ -36,7 +36,7 @@ ssize_t PosixPassthrough::passthrough_posix_read (int fd, void* buf, size_t coun
 
     ssize_t result = ((libc_read_t)dlsym (RTLD_NEXT, "read")) (fd, buf, counter);
 
-    std::string str = "[" + timestamp + "] read(" + std::to_string(fd) + ", ..., " + std::to_string(counter)
+    std::string str = "[" + timestamp + "] read(" + std::to_string(fd) + ", " + std::to_string(counter)
     + ", ..., " + std::to_string(result) + ")" + ". PID= " + std::to_string(getpid()) + "\n";
 
     PosixPassthrough::logger(str, "read");
