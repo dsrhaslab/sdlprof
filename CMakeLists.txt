@@ -57,7 +57,8 @@ target_sources(
         profiler
         PRIVATE
         src/posix_file_system.cpp
-        src/posix_passthrough.cpp
+#        src/posix_passthrough.cpp
+        src/posix_passthrough_alt.cpp
 )
 
 

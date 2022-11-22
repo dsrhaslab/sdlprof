@@ -137,10 +137,10 @@ extern "C" int open (const char* path, int flags, ...)
  * @param mode
  * @return
  */
-/*extern "C" int creat (const char* path, mode_t mode)
+extern "C" int creat (const char* path, mode_t mode)
 {
     return profiler::PosixPassthrough::passthrough_posix_creat (path, mode);
-}*/
+}
 
 /**
  * creat64:
@@ -148,10 +148,10 @@ extern "C" int open (const char* path, int flags, ...)
  * @param mode
  * @return
  */
-/*extern "C" int creat64 (const char* path, mode_t mode)
+extern "C" int creat64 (const char* path, mode_t mode)
 {
     return profiler::PosixPassthrough::passthrough_posix_creat64 (path, mode);
-}*/
+}
 
 /**
  * openat:
