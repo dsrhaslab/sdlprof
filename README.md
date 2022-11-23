@@ -15,8 +15,8 @@ $ export PROFILING_DIR=$(pwd)/libprofiler.so
 $ LD_PRELOAD=$PROFILING_DIR ./executable
 ```
 
-### Configure
-In the `include` directory can be found a file named `config.hpp`.
+### Configurations
+Basic configurations can be found in the file `include/config.hpp`.
 
 - `log_type` defines if the log file created will be written in JSON format or in a format destined to easy for people to read.
 - `dir` specifies the path where the log file will be created.
