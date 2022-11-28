@@ -3,16 +3,16 @@
 ### Set up sdlprof
 ```shell
 $ git clone git@github.com:mariabeatrizmo/sdlprof.git
-$ cd Profiler
+$ cd sdlprof
 $ mkdir build; cd build
 $ cmake ..
 $ cmake --build .
-$ export PROFILING_DIR=$(pwd)/libprofiler.so
+$ export PROFILER=$(pwd)/libprofiler.so
 ```
 
 ### Using sdlprof
 ```shell
-$ LD_PRELOAD=$PROFILING_DIR ./executable
+$ LD_PRELOAD=$PROFILER ./executable
 ```
 
 ### Configurations
@@ -27,7 +27,7 @@ Basic configurations can be found in the file `include/config.hpp`.
 ### Example 
 ``` shell
 $ git clone git@github.com:mariabeatrizmo/sdlprof.git
-$ cd Profiler
+$ cd sdlprof
 $ mkdir build; cd build
 $ cmake ..
 $ cmake --build .
