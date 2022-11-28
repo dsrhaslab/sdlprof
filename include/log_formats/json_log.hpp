@@ -125,7 +125,7 @@ std::string json_log_mmap (std::string timestamp, void* addr, size_t length, int
     std::string addr_name = address.str();
 
     std::string str;
-    str =       "{\"sys_call_name\":\"pwrite\"";
+    str =       "{\"sys_call_name\":\"mmap\"";
     str.append( ",\"timestamp\":"); str.append(timestamp);
     str.append( ",\"addr\":"); str.append(addr_name);
     str.append( ",\"length\":"); str.append(std::to_string(length));
