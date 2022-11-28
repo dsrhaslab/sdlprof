@@ -30,8 +30,8 @@ $ cd Profiler
 $ mkdir build; cd build
 $ cmake ..
 $ cmake --build .
-$ export PROFILING_DIR=$(pwd)/libprofiler.so
+$ export PROFILER=$(pwd)/libprofiler.so
 $ cd ../test
 $ g++ -g -o main main.cpp -ldl
-$ LD_PRELOAD=$PROFILING_DIR ./main
+$ LD_PRELOAD=$PROFILER ./main
 ```
