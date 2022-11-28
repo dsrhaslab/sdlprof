@@ -10,11 +10,17 @@ void log_name_setter(){
     auto time = std::chrono::system_clock::now();
     std::time_t end_time = std::chrono::system_clock::to_time_t(time);
 
+    if(config::machine_name.empty()){
+        char hostname[64];
+        gethostname(hostname, 64);
+        config::machine_name = std::string(hostname);
+    }
+
     if(config::log_type == config::json){
-        config::log_name = config::dir + "log_" + config::pid + "_" + std::string(std::ctime(&end_time)) + ".json" ;
+        config::log_name = config::dir + "log_" + config::machine_name + "_" + std::string(std::ctime(&end_time)) + "_" + config::pid + ".json" ;
     }
     else{
-        config::log_name = config::dir + "log_" /*+ config::pid + "log_"*/ + std::string(std::ctime(&end_time)) + ".txt" ;
+        config::log_name = config::dir + "log_" + config::machine_name + "_" + std::string(std::ctime(&end_time)) + "_" + config::pid + ".txt" ;
     }
     std::replace(config::log_name.begin(), config::log_name.end(), ' ', '_');
     config::log_name.erase(std::remove(config::log_name.begin(), config::log_name.end(), '\n'), config::log_name.cend());
