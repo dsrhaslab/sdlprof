@@ -13,6 +13,7 @@
 #include <iostream>
 #include <sys/time.h>
 #include <sstream>
+#include <cassert>
 
 #include <algorithm>
 #include <chrono>

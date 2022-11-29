@@ -126,16 +126,17 @@ std::string json_log_mmap (std::string timestamp, void* addr, size_t length, int
 
     std::string str;
     str =       "{\"sys_call_name\":\"mmap\"";
-    str.append( ",\"timestamp\":"); str.append(timestamp);
-    str.append( ",\"addr\":"); str.append(addr_name);
-    str.append( ",\"length\":"); str.append(std::to_string(length));
-    str.append( ",\"prot\":"); str.append(std::to_string(prot));
-    str.append( ",\"flags\":"); str.append(std::to_string(flags));
-    str.append( ",\"fd\":"); str.append(std::to_string(fd));
-    str.append( ",\"offset\":"); str.append(std::to_string(offset));
-    str.append( ",\"pid\":"); str.append(pid);
+    str.append(  ",\"timestamp\":"); str.append(timestamp);
+    str.append(  ",\"addr\":\""); str.append(addr_name);
+    str.append("\",\"length\":"); str.append(std::to_string(length));
+    str.append(  ",\"prot\":"); str.append(std::to_string(prot));
+    str.append(  ",\"flags\":"); str.append(std::to_string(flags));
+    str.append(  ",\"fd\":"); str.append(std::to_string(fd));
+    str.append(  ",\"offset\":"); str.append(std::to_string(offset));
+    str.append(  ",\"pid\":"); str.append(pid);
     str.append( "}\n");
     
+    printf("%s\n", str.data());
     return str;
 }
 
@@ -148,13 +149,14 @@ std::string json_log_munmap (std::string timestamp, void* addr, size_t length, i
 
     std::string str;
     str =       "{\"sys_call_name\":\"munmap\"";
-    str.append( ",\"timestamp\":"); str.append(timestamp);
-    str.append( ",\"addr\":"); str.append(addr_name);
-    str.append( ",\"length\":"); str.append(std::to_string(length));
-    str.append( ",\"result\":"); str.append(std::to_string(result));
-    str.append( ",\"pid\":"); str.append(pid);
+    str.append(  ",\"timestamp\":"); str.append(timestamp);
+    str.append(  ",\"addr\":\""); str.append(addr_name);
+    str.append("\",\"length\":"); str.append(std::to_string(length));
+    str.append(  ",\"result\":"); str.append(std::to_string(result));
+    str.append(  ",\"pid\":"); str.append(pid);
     str.append( "}\n");
 
+    printf("%s\n", str.data());
     return str;
 }
 

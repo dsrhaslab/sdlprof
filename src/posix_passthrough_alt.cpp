@@ -4,40 +4,41 @@
 #include "log_formats/pretty_print_log.hpp"
 #include "log_formats/json_log.hpp"
 
+
 namespace profiler {
 
 void log_name_setter(){
     auto time = std::chrono::system_clock::now();
     std::time_t end_time = std::chrono::system_clock::to_time_t(time);
 
-    if(config::machine_name.empty()){
+    if(config::hostname.empty()){
         char hostname[64];
         gethostname(hostname, 64);
-        config::machine_name = std::string(hostname);
+        config::hostname = std::string(hostname);
     }
 
     if(config::log_type == config::json){
-        config::log_name = config::dir + "log_" + config::machine_name + "_" + std::string(std::ctime(&end_time)) + "_" + config::pid + ".json" ;
+        config::log_file_name = config::dir + "log_" + config::hostname + "_" + std::string(std::ctime(&end_time)) + "_" + config::pid + ".json" ;
     }
     else{
-        config::log_name = config::dir + "log_" + config::machine_name + "_" + std::string(std::ctime(&end_time)) + "_" + config::pid + ".txt" ;
+        config::log_file_name = config::dir + "log_" + config::hostname + "_" + std::string(std::ctime(&end_time)) + "_" + config::pid + ".txt" ;
     }
-    std::replace(config::log_name.begin(), config::log_name.end(), ' ', '_');
-    config::log_name.erase(std::remove(config::log_name.begin(), config::log_name.end(), '\n'), config::log_name.cend());
-    //printf("-------------------%s\n", log_name.c_str());
+    std::replace(config::log_file_name.begin(), config::log_file_name.end(), ' ', '_');
+    config::log_file_name.erase(std::remove(config::log_file_name.begin(), config::log_file_name.end(), '\n'), config::log_file_name.cend());
+    //printf("-------------------%s\n", log_file_name.c_str());
 }
 
 void PosixPassthrough::logger(std::string str, std::string type){
     //printf("%s\n",type.c_str());
-    if(config::log_name.empty()){
+    if(config::log_file_name.empty()){
         profiler::log_name_setter();
     }
     
-    int fd_for_write = ((libc_open_variadic_t)dlsym (RTLD_NEXT, "open")) (config::log_name.c_str(), O_CREAT | O_RDWR | O_APPEND, S_IRWXU);
+    int fd_for_write = ((libc_open_variadic_t)dlsym (RTLD_NEXT, "open")) (config::log_file_name.c_str(), O_CREAT | O_RDWR | O_APPEND, S_IRWXU);
 
     if(fd_for_write > 0){
-        int written = ((libc_write_t)dlsym(RTLD_NEXT, "write"))(fd_for_write, str.c_str (), str.size ());
-        int close_fd = ((libc_close_t)dlsym(RTLD_NEXT, "close"))(fd_for_write);
+        [[maybe_unused]] int written = ((libc_write_t)dlsym(RTLD_NEXT, "write"))(fd_for_write, str.c_str (), str.size ());
+        [[maybe_unused]] int close_fd = ((libc_close_t)dlsym(RTLD_NEXT, "close"))(fd_for_write);
         //printf("%d_%d_%d\n",fd_for_write,written,close_fd);
     } 
     else printf("Problem openning log file.\n");

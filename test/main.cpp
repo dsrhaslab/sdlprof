@@ -13,8 +13,8 @@ int main(){
     int buffsize = 256;
     bool cont = true;
 
-    int fd = open("/usr/local/lib/python3.8/dist-packages/tensorflow/python/keras/engine/data_adapter.py", O_RDONLY, S_IRWXU);
-    int fd_1 = open("/home/gsd/logs/copy.py", O_CREAT | O_RDWR, S_IRWXU);
+    int fd = open("../include/config.hpp", O_RDONLY, S_IRWXU);
+    int fd_1 = open("copy.py", O_CREAT | O_RDWR, 0666);
 
     if(fd>0){ 
         unsigned char* buffer = (unsigned char*) malloc(buffsize);
