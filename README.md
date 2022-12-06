@@ -2,7 +2,7 @@
 # sdlprof: Storage DL Profiler
 ### Set up sdlprof
 ```shell
-$ git clone https://github.com/dsrhaslab/sdlprof.git
+$ git clone git@github.com:dsrhaslab/sdlprof.git
 $ cd sdlprof
 $ mkdir build; cd build
 $ cmake ..
