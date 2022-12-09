@@ -1,5 +1,5 @@
 
-# sdlprof: Storage DL Profiler
+# sdlprof: A Storage Profiler for Deep Learning Frameworks
 ### Set up sdlprof
 ```shell
 $ git clone git@github.com:dsrhaslab/sdlprof.git
