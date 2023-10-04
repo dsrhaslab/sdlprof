@@ -103,10 +103,10 @@ ssize_t PosixPassthrough::passthrough_posix_pread (int fd, void* buf, size_t cou
 
     if(config::pid.empty() or config::reset_pid_per_op) config::pid=std::to_string(getpid());
     if(config::log_type == config::json){
-        str = json_format_log::json_log_pread(timestamp, fd, counter, result, offset, config::pid);
+        str = json_format_log::json_log_pread(timestamp, fd, counter, offset, result, config::pid);
     }
     else{
-        str = pretty_print_format_log::pretty_print_log_pread(timestamp, fd, counter, result, offset, config::pid);
+        str = pretty_print_format_log::pretty_print_log_pread(timestamp, fd, counter, offset, result, config::pid);
     }
    
     PosixPassthrough::logger(str, "pread");
@@ -128,7 +128,7 @@ ssize_t PosixPassthrough::passthrough_posix_pwrite (int fd, const void* buf, siz
         str = json_format_log::json_log_pwrite(timestamp, fd, counter, result, offset, config::pid);
     }
     else{
-        str = pretty_print_format_log::pretty_print_log_pwrite(timestamp, fd, counter, result, offset, config::pid);
+        str = pretty_print_format_log::pretty_print_log_pwrite(timestamp, fd, counter, offset, result, config::pid);
     }
 
     PosixPassthrough::logger(str, "pwrite");
@@ -149,10 +149,10 @@ ssize_t PosixPassthrough::passthrough_posix_pread64 (int fd, void* buf, size_t c
 
     if(config::pid.empty() or config::reset_pid_per_op) config::pid=std::to_string(getpid());
     if(config::log_type == config::json){
-        str = json_format_log::json_log_pread64(timestamp, fd, counter, result, offset, config::pid);
+        str = json_format_log::json_log_pread64(timestamp, fd, counter, offset, result, config::pid);
     }
     else{
-        str = pretty_print_format_log::pretty_print_log_pread64(timestamp, fd, counter, result, offset, config::pid);
+        str = pretty_print_format_log::pretty_print_log_pread64(timestamp, fd, counter, offset, result, config::pid);
     }
     PosixPassthrough::logger(str, "pread64");
 
@@ -173,10 +173,10 @@ ssize_t PosixPassthrough::passthrough_posix_pwrite64 (int fd, const void* buf, s
 
     if(config::pid.empty() or config::reset_pid_per_op) config::pid=std::to_string(getpid());
     if(config::log_type == config::json){
-        str = json_format_log::json_log_pwrite64(timestamp, fd, counter, result, offset, config::pid);
+        str = json_format_log::json_log_pwrite64(timestamp, fd, counter, offset, result, config::pid);
     }
     else{
-        str = pretty_print_format_log::pretty_print_log_pwrite64(timestamp, fd, counter, result, offset, config::pid);
+        str = pretty_print_format_log::pretty_print_log_pwrite64(timestamp, fd, counter, offset, result, config::pid);
     }
 
     PosixPassthrough::logger(str, "pwrite64");
