@@ -136,7 +136,7 @@ std::string json_log_mmap (std::string timestamp, void* addr, size_t length, int
     str.append(  ",\"pid\":"); str.append(pid);
     str.append( "}\n");
     
-    printf("%s\n", str.data());
+    //printf("%s\n", str.data());
     return str;
 }
 
@@ -156,7 +156,7 @@ std::string json_log_munmap (std::string timestamp, void* addr, size_t length, i
     str.append(  ",\"pid\":"); str.append(pid);
     str.append( "}\n");
 
-    printf("%s\n", str.data());
+    //printf("%s\n", str.data());
     return str;
 }
 
